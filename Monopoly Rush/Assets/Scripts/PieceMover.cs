@@ -15,7 +15,7 @@ public class PieceMover : MonoBehaviour
     void Start()
     {
         _cGameManager = CGameManager.Instance;
-        targetList = _cGameManager.total_Building_List;
+        targetList = _cGameManager.totalBuildingList;
 
         CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
     
@@ -63,8 +63,8 @@ public class PieceMover : MonoBehaviour
             case "Player_Building":
                 
                 _cGameManager.UpdatePlayerScores(4, incomeAmount);
-                _cGameManager.player_cash += incomeAmount;
-                _cGameManager.player_cash_text.text = _cGameManager.player_cash.ToString("F0");
+                _cGameManager.playerCash += incomeAmount;
+                _cGameManager.playerCashText.text = _cGameManager.playerCash.ToString("F0");
    
                 break;
             case "Jonathan_Building":
@@ -91,10 +91,10 @@ public class PieceMover : MonoBehaviour
 
     IEnumerator PlayerCashTween()
     {
-        Tween tween= _cGameManager.player_cash_text.transform.DOPunchScale(Vector3.one, .25f, 5, 0.2f);
+        Tween tween= _cGameManager.playerCashText.transform.DOPunchScale(Vector3.one, .25f, 5, 0.2f);
 
         yield return tween.WaitForCompletion();
 
-        _cGameManager.player_cash_text.transform.DORewind();
+        _cGameManager.playerCashText.transform.DORewind();
     }
 }

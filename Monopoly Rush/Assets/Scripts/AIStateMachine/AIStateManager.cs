@@ -92,12 +92,12 @@ namespace AIStateMachine
             if (collector.collectedBricks < _brickCapacity)
             {
                 selectedListNo = 0;
-                return CGameManager.Instance.supply_Line_List;
+                return CGameManager.Instance.supplyLineList;
             }
             else
             {
                 selectedListNo = 1;
-                return CGameManager.Instance.inactive_Building_List;
+                return CGameManager.Instance.inactiveBuildingList;
             }
         }
 

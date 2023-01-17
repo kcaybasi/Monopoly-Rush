@@ -61,8 +61,8 @@ public class BuildingManager : MonoBehaviour
     private void Start()
     {
         _cGameManager = CGameManager.Instance;
-        _cGameManager.inactive_Building_List.Add(buildingFrontTarget); // Adding all of the buildings to inactive list
-        _cGameManager.total_Building_List.Add(buildingFrontTarget); // Adding all of the buildings to total building list
+        _cGameManager.inactiveBuildingList.Add(buildingFrontTarget); // Adding all of the buildings to inactive list
+        _cGameManager.totalBuildingList.Add(buildingFrontTarget); // Adding all of the buildings to total building list
     }
 
     public void Build()
