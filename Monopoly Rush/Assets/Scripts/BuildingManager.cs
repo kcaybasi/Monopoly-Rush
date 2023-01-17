@@ -31,10 +31,10 @@ public class BuildingManager : MonoBehaviour
     
     public ParticleSystem pieceSmashParticle;
     [SerializeField] GameObject hammerImageObj;
-    [SerializeField] GameObject houseImageObj;
-    [SerializeField] TextMeshProUGUI houseText;
+    [SerializeField] GameObject activeHouseObj;
+    [SerializeField] TextMeshProUGUI activeIncomeText;
+    [SerializeField] TextMeshProUGUI inactiveIncomeText;
     
-    [SerializeField] TextMeshProUGUI incomeText;
     public int incomeAmount;
     public bool playerBuilding;
     [SerializeField] GameObject playerIcon;
@@ -46,8 +46,8 @@ public class BuildingManager : MonoBehaviour
         _progressIncrement = 1f / brickAmountToActivate;
         
         // Assign the building text properties
-        incomeText.text= "$" + incomeAmount.ToString("F0") +"/s";
-        houseText.text = "$" + incomeAmount.ToString("F0")+"/s";
+        inactiveIncomeText.text= "$" + incomeAmount.ToString("F0") +"/s";
+        activeIncomeText.text = "$" + incomeAmount.ToString("F0")+"/s";
     }
 
     private void Start()
@@ -95,14 +95,14 @@ public class BuildingManager : MonoBehaviour
     {
         dummyBuilding.SetActive(true);
 
-        incomeText.gameObject.SetActive(false);
+        inactiveIncomeText.gameObject.SetActive(false);
 
         buildParticle.Play();
         circleBackgroundImage.SetActive(false);
 
         hammerImageObj.SetActive(false);
-        houseText.gameObject.SetActive(true);
-        houseImageObj.SetActive(true);
+        activeIncomeText.gameObject.SetActive(true);
+        activeHouseObj.SetActive(true);
         progressCircleImage.gameObject.SetActive(false);
 
         if (playerBuilding)

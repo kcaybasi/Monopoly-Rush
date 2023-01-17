@@ -114,10 +114,10 @@ MonoBehaviour:
   progressCircleImage: {fileID: 3967284330079324802}
   buildParticle: {fileID: 8725909816586164179}
   pieceSmashParticle: {fileID: 17010121151253918}
-  hammerImageObj: {fileID: 0}
-  houseImageObj: {fileID: 0}
-  houseText: {fileID: 3624336655493914190}
-  incomeText: {fileID: 7186389740567043023}
+  hammerImageObj: {fileID: 3967284329803401321}
+  activeHouseObj: {fileID: 3648519581952016247}
+  activeIncomeText: {fileID: 3624336655493914190}
+  inactiveIncomeText: {fileID: 7186389740567043023}
   incomeAmount: 0
   playerBuilding: 0
   playerIcon: {fileID: 7311098511613809072}
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 581361997403475542}
   - component: {fileID: 7186389740567043023}
   m_Layer: 0
-  m_Name: Income_Text
+  m_Name: Inactive Income Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20467,7 +20467,7 @@ GameObject:
   - component: {fileID: 4262603121254712718}
   - component: {fileID: 3624336655493914190}
   m_Layer: 0
-  m_Name: House_Text
+  m_Name: Active Income Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20903,7 +20903,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8670617697924474291, guid: 4a610fa94e5bf4f4ea72025026ac57ca, type: 3}
       propertyPath: m_Name
-      value: Building_Base_Dummy
+      value: Active House Obj
       objectReference: {fileID: 0}
     - target: {fileID: 8670617697924474291, guid: 4a610fa94e5bf4f4ea72025026ac57ca, type: 3}
       propertyPath: m_IsActive
