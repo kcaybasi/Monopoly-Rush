@@ -172,11 +172,11 @@ public class Collector : MonoBehaviour
                 building_Manager.CheckBuildingStatus(this.gameObject);
                 if (this.gameObject.CompareTag("Player"))
                 {
-                    building_Manager.playerBuilding = true;
+                    building_Manager.IsPlayerBuilding = true;
                 }
                 else
                 {
-                    building_Manager.playerBuilding = false;
+                    building_Manager.IsPlayerBuilding = false;
                 }
                 if (collectedBrickList.Count == 0) { return; }
                 StartCoroutine(SpendObject(other));

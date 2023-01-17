@@ -52,7 +52,7 @@ public class PieceMover : MonoBehaviour
         BuildingManager buildingManager = other.GetComponent<BuildingManager>();
 
         if (buildingManager == null) { return; }
-        int incomeAmount = buildingManager.incomeAmount;
+        int incomeAmount = buildingManager.IncomeAmount;
         if (!buildingManager.pieceSmashParticle.isPlaying)
         {
             buildingManager.pieceSmashParticle.Play();
