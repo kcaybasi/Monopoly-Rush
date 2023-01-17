@@ -149,19 +149,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickAmountToActivate: 15
-  buildingCapacity: 1
   buildingState: 0
   buildingFrontTarget: {fileID: 6653669257309499687}
   dummyBuilding: {fileID: 3648519581952016247}
-  windowList:
-  - {fileID: 1538272544}
   buildTeam: {fileID: 5673027036338585922}
   imageUpgradeParticle: {fileID: 6790695990581133986}
   buildingUpgradeParticle: {fileID: 8725909816586164179}
   pieceSmashParticle: {fileID: 6790695990581133986}
-  borderImage: {fileID: 3967284329932024463}
-  circleImage: {fileID: 3967284330951321175}
-  fillImage: {fileID: 3967284330079324802}
+  circleBackgroundImage: {fileID: 3967284330951321175}
+  progressCircleImage: {fileID: 3967284330079324802}
   hammerObj: {fileID: 3967284329803401321}
   houseObj: {fileID: 3967284329794001311}
   houseText: {fileID: 3624336655493914190}
@@ -707,7 +703,7 @@ GameObject:
   - component: {fileID: 3967284330079324802}
   - component: {fileID: 3967284331405075597}
   m_Layer: 0
-  m_Name: FillCircle
+  m_Name: ProgressCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +928,7 @@ GameObject:
   - component: {fileID: 3967284330951321169}
   - component: {fileID: 3967284329661496756}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: CircleBackground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

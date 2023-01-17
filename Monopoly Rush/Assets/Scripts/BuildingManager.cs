@@ -27,13 +27,13 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] ParticleSystem imageUpgradeParticle;
     [SerializeField] ParticleSystem buildingUpgradeParticle;
     public ParticleSystem pieceSmashParticle;
-    [SerializeField] GameObject circleImage;
-    [SerializeField] Image fillImage;
+    [SerializeField] GameObject circleBackgroundImage;
+    [SerializeField] Image progressCircleImage;
     [SerializeField] GameObject hammerObj;
     [SerializeField] GameObject houseObj;
     [SerializeField] TextMeshProUGUI houseText;
 
-    float _imageIncrement;
+    float _progressIncrement;
     [SerializeField] TextMeshProUGUI incomeText;
     public int incomeAmount;
     public bool playerBuilding;
@@ -43,7 +43,7 @@ public class BuildingManager : MonoBehaviour
     
     private void Awake()
     {
-        _imageIncrement = 1f / brickAmountToActivate;
+        _progressIncrement = 1f / brickAmountToActivate;
         
         // Assign the building text properties
         incomeText.text= "$" + incomeAmount.ToString("F0") + "/s";
@@ -62,7 +62,7 @@ public class BuildingManager : MonoBehaviour
         if (brickAmountToActivate >= 0)
         {
             brickAmountToActivate--;
-            fillImage.fillAmount += _imageIncrement;
+            progressCircleImage.fillAmount += _progressIncrement;
         }
     }
 
@@ -99,12 +99,12 @@ public class BuildingManager : MonoBehaviour
 
         imageUpgradeParticle.Play();
         buildingUpgradeParticle.Play();
-        circleImage.SetActive(false);
+        circleBackgroundImage.SetActive(false);
 
         hammerObj.SetActive(false);
         houseText.gameObject.SetActive(true);
         houseObj.SetActive(true);
-        fillImage.gameObject.SetActive(false);
+        progressCircleImage.gameObject.SetActive(false);
 
         if (playerBuilding)
         {
