@@ -11,8 +11,6 @@ public class BuildingManager : MonoBehaviour
     [Header("Building Properties")]
 
     public float brickAmountToActivate=15;
-    public int buildingCapacity;
-    private int _startingCapacity;
     public enum BuildingState { Inactive, Active}
     public BuildingState buildingState = BuildingState.Inactive;
 
@@ -46,8 +44,6 @@ public class BuildingManager : MonoBehaviour
     private void Awake()
     {
         _imageIncrement = 1f / brickAmountToActivate;
-        
-        _startingCapacity = buildingCapacity;
         
         // Assign the building text properties
         incomeText.text= "$" + incomeAmount.ToString("F0") + "/s";
