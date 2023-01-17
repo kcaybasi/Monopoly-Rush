@@ -13,7 +13,7 @@ public class BuildingManager : MonoBehaviour
     public float brickAmountToActivate=15;
     public int buildingCapacity;
     private int _startingCapacity;
-    public enum BuildingState { Inactive, Active, Occupied }
+    public enum BuildingState { Inactive, Active}
     public BuildingState buildingState = BuildingState.Inactive;
 
     [Header("Building Activate Components")]
@@ -21,7 +21,6 @@ public class BuildingManager : MonoBehaviour
     Collector _collector;
     [SerializeField] GameObject buildingFrontTarget;
     [SerializeField] GameObject dummyBuilding;
-    [SerializeField] List<GameObject> windowList;
     [SerializeField] GameObject buildTeam;
     readonly float _buildTime=.75f;
 
@@ -30,7 +29,6 @@ public class BuildingManager : MonoBehaviour
     [SerializeField] ParticleSystem imageUpgradeParticle;
     [SerializeField] ParticleSystem buildingUpgradeParticle;
     public ParticleSystem pieceSmashParticle;
-    [SerializeField] Image borderImage;
     [SerializeField] GameObject circleImage;
     [SerializeField] Image fillImage;
     [SerializeField] GameObject hammerObj;
@@ -42,18 +40,16 @@ public class BuildingManager : MonoBehaviour
     public int incomeAmount;
     public bool playerBuilding;
     [SerializeField] GameObject playerIcon;
-
-
+    
     CGameManager _cGameManager;
     
-
-
     private void Awake()
     {
         _imageIncrement = 1f / brickAmountToActivate;
-
+        
         _startingCapacity = buildingCapacity;
-
+        
+        // Assign the building text properties
         incomeText.text= "$" + incomeAmount.ToString("F0") + "/s";
         houseText.text = "$" + incomeAmount.ToString("F0")+"/s";
     }

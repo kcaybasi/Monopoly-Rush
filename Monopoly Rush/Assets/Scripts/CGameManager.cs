@@ -43,7 +43,15 @@ public class CGameManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
@@ -70,20 +78,13 @@ public class CGameManager : MonoBehaviour
         {
             activeBuildingCountText.transform.DOPunchScale(Vector3.one, .3f, 5, 0.2f);
         }
-        
-        
     }
 
     public void CheckIfGameFinished()
     {
-      
         if (inactiveBuildingList.Count <= 0)
         {
-           
-            if (OnGameFinish != null)
-            {
-                OnGameFinish();
-            }
+            OnGameFinish?.Invoke();
             SortScore();
             ShowLeaderboard();
             if (usernameList.Count > 0)
@@ -98,19 +99,14 @@ public class CGameManager : MonoBehaviour
                         }
                     }
                 }
- 
             }
-
-            
         }
     }
-
-
+    
     public void ShowLeaderboard()
     {
         leaderboard.SetActive(true);
         leaderboard.transform.DOScale(0.75f, 1f);
-
     }
 
 
@@ -120,15 +116,12 @@ public class CGameManager : MonoBehaviour
         if (usernameList.Count>0)
         {
             _scoreList.Sort();
-
-
             for (int i = 0; i < collectorList.Count; i++)
             {
                 usernameList[i].text = _scoreList[i].name;
                 scoreTextList[i].text = _scoreList[i].score.ToString("F0");
             }
         }
-
     }
 
 
@@ -137,26 +130,25 @@ public class CGameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void UpdatePlayerScores(int player_no,int increment_value)
+    public void UpdatePlayerScores(int playerNo,int incrementValue)
     {
-        switch (player_no)
+        switch (playerNo)
         {
             case 0: 
-                _scoreList[4].score += increment_value;
+                _scoreList[4].score += incrementValue;
                 break;
             case 1:
-                _scoreList[3].score += increment_value;
+                _scoreList[3].score += incrementValue;
                 break;
             case 2:
-                _scoreList[2].score += increment_value;
+                _scoreList[2].score += incrementValue;
                 break;
             case 3:
-                _scoreList[1].score += increment_value;
+                _scoreList[1].score += incrementValue;
                 break;
             case 4:
-                _scoreList[0].score += increment_value;
+                _scoreList[0].score += incrementValue;
                 break;
-
         }
     }
 
