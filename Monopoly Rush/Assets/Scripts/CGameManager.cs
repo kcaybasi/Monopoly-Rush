@@ -10,9 +10,9 @@ using Facebook.Unity;
 using GameAnalyticsSDK;
 
 
-public class C_GameManager : MonoBehaviour
+public class CGameManager : MonoBehaviour
 {
-    public static C_GameManager instance;
+    public static CGameManager Instance;
 
 
     public List<Collector> collector_List;
@@ -45,7 +45,7 @@ public class C_GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
 
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;

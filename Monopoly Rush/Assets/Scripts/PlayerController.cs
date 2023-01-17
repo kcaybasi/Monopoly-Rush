@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController _characterController;
     Animator _pAnimator;
-    C_GameManager _cGameManager;
+    CGameManager _cGameManager;
 
     // Variables to store input values
 
@@ -32,8 +32,8 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _cGameManager = C_GameManager.instance;
-        C_GameManager.OnGameFinish += C_GameManager_OnGameFinish;
+        _cGameManager = CGameManager.Instance;
+        CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
     }
 
     private void C_GameManager_OnGameFinish()

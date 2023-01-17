@@ -17,7 +17,7 @@ public class TutorialManager : MonoBehaviour
 
     private void Start()
     {
-        C_GameManager.OnGameFinish += C_GameManager_OnGameFinish;
+        CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
     }
 
     private void C_GameManager_OnGameFinish()

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class PieceMover : MonoBehaviour
 {
-    C_GameManager _cGameManager;
+    CGameManager _cGameManager;
     readonly float _waitTime=1.5f;
     public List<GameObject> targetList=new List<GameObject>();
     int _targetIndex=0;
@@ -14,10 +14,10 @@ public class PieceMover : MonoBehaviour
     
     void Start()
     {
-        _cGameManager = C_GameManager.instance;
+        _cGameManager = CGameManager.Instance;
         targetList = _cGameManager.total_Building_List;
 
-        C_GameManager.OnGameFinish += C_GameManager_OnGameFinish;
+        CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
     
     }
 

@@ -25,7 +25,7 @@ public class Collector : MonoBehaviour
 
     [Header("Cash Collection")]
 
-    C_GameManager c_GameManager;
+    CGameManager c_GameManager;
     [SerializeField] string cash_tag;
     [SerializeField] TextMeshProUGUI cash_text;
     int collected_cash;
@@ -52,7 +52,7 @@ public class Collector : MonoBehaviour
 
     private void Start()
     {
-        c_GameManager = C_GameManager.instance;
+        c_GameManager = CGameManager.Instance;
     }
 
 

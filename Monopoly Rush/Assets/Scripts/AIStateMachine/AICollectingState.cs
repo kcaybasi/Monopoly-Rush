@@ -21,7 +21,7 @@ namespace AIStateMachine
         {
             if (StateManager.selectedListNo == 0)
             {
-                _selectedSupplyLine = StateManager.GetClosestTarget(C_GameManager.instance.supply_Line_List);
+                _selectedSupplyLine = StateManager.GetClosestTarget(CGameManager.Instance.supply_Line_List);
             }
             _selectedBrickPath = _selectedSupplyLine.transform.GetChild(10).GetComponent<BrickPath>();
             _currentLocation = _selectedBrickPath.transform.position;

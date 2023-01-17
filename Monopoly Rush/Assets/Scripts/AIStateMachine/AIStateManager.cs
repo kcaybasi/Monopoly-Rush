@@ -8,7 +8,7 @@ namespace AIStateMachine
     {
         public AIBaseState CurrentState { get; set; }
         private AIStateFactory _stateFactory;
-
+        
         NavMeshAgent _navMeshAgent;
         public Collector collector;
         public int selectedListNo;
@@ -34,7 +34,7 @@ namespace AIStateMachine
             CurrentState.EnterState();
             // Subscribe to game finish event
 
-            C_GameManager.OnGameFinish += C_GameManager_OnGameFinish;
+            CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
         }
 
         private void C_GameManager_OnGameFinish()
@@ -92,12 +92,12 @@ namespace AIStateMachine
             if (collector.collectedBricks < _brickCapacity)
             {
                 selectedListNo = 0;
-                return C_GameManager.instance.supply_Line_List;
+                return CGameManager.Instance.supply_Line_List;
             }
             else
             {
                 selectedListNo = 1;
-                return C_GameManager.instance.inactive_Building_List;
+                return CGameManager.Instance.inactive_Building_List;
             }
         }
 
