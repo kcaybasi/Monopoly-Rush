@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AIStateMachine
 {
      public abstract class AIBaseState
@@ -15,6 +17,7 @@ namespace AIStateMachine
           public   abstract void UpdateState();
           public  abstract void ExitState();
           public abstract void CheckSwitchStates();
+          
           
           protected void SwitchState(AIBaseState newState)
           {

@@ -32,15 +32,9 @@ namespace AIStateMachine
             _stateFactory = new AIStateFactory(this);
             CurrentState = _stateFactory.MovementState();
             CurrentState.EnterState();
-
-
-            //Ignore other AI & Player Collisions
-
             // Subscribe to game finish event
 
             C_GameManager.OnGameFinish += C_GameManager_OnGameFinish;
-
-        
         }
 
         private void C_GameManager_OnGameFinish()
@@ -57,13 +51,12 @@ namespace AIStateMachine
         public void SwitchState(AIBaseState state)
         {
             CurrentState = state;
-       
             state.EnterState();
         }
 
-        public void MoveTo(Vector3 target_pos)
+        public void MoveTo(Vector3 targetPos)
         {
-            _navMeshAgent.SetDestination(target_pos);
+            _navMeshAgent.SetDestination(targetPos);
         }
 
 
@@ -80,15 +73,13 @@ namespace AIStateMachine
 
             var minValue = Mathf.Min(distanceList.ToArray());
             int index = distanceList.IndexOf(minValue);
-
-
+            
             return targetList[index].transform.gameObject;
-
         }
 
-        public bool TargetReached(Vector3 target_pos)
+        public bool TargetReached(Vector3 targetPos)
         {
-            return Vector3.Magnitude(transform.position - target_pos) < _reachDistance;
+            return Vector3.Magnitude(transform.position - targetPos) < _reachDistance;
         }
 
         public bool BrickCapacityFull()
@@ -120,11 +111,8 @@ namespace AIStateMachine
 
             if (other.CompareTag("ActiveBuilding")) // To avoid stucking at finished building. Later on stop timing will be add. 
             {
-                SwitchState(_stateFactory.MovementState());;
+                SwitchState(_stateFactory.MovementState());
             }
         }
-
-
-
     }
 }
