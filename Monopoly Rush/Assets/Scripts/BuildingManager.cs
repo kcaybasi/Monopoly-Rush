@@ -9,40 +9,36 @@ public class BuildingManager : MonoBehaviour
 {
 
     [Header("Building Properties")]
-
     public float brickAmountToActivate=15;
     public enum BuildingState { Inactive, Active}
     public BuildingState buildingState = BuildingState.Inactive;
 
-    [Header("Building Activate Components")]
-
-    Collector _collector;
-    [SerializeField] GameObject buildingFrontTarget;
-    [SerializeField] GameObject dummyBuilding;
-    [SerializeField] GameObject buildTeam;
-    readonly float _buildTime=.75f;
-
-    [Header("Building Progress")]
-    
-    [SerializeField] GameObject circleBackgroundImage;
+    [Header("Visuals")]
+    [SerializeField] GameObject playerIcon;
     [SerializeField] Image progressCircleImage;
-    [SerializeField] private ParticleSystem buildParticle;
-    float _progressIncrement;
-    
-    public ParticleSystem pieceSmashParticle;
-    [SerializeField] GameObject hammerImageObj;
-    [SerializeField] GameObject activeHouseObj;
+    [SerializeField] GameObject circleBackgroundImage;
     [SerializeField] TextMeshProUGUI activeIncomeText;
     [SerializeField] TextMeshProUGUI inactiveIncomeText;
+    [SerializeField] GameObject hammerImageObj;
+    [SerializeField] GameObject activeBuilding;
+    [SerializeField] GameObject buildTeam;
+    [SerializeField] private ParticleSystem buildParticle;
+    [SerializeField] GameObject buildingFrontTarget;
+    public ParticleSystem pieceSmashParticle;
     
+    readonly float _buildTime=.75f;
+    float _progressIncrement;
     public int incomeAmount;
     public bool playerBuilding;
-    [SerializeField] GameObject playerIcon;
+    
+    // Components
     
     CGameManager _cGameManager;
+    Collector _collector;
     
     private void Awake()
     {
+        // Calculate the progress increment value
         _progressIncrement = 1f / brickAmountToActivate;
         
         // Assign the building text properties
@@ -93,7 +89,7 @@ public class BuildingManager : MonoBehaviour
 
     private void ActivateDummyBuilding()
     {
-        dummyBuilding.SetActive(true);
+        activeBuilding.SetActive(true);
 
         inactiveIncomeText.gameObject.SetActive(false);
 
@@ -102,7 +98,7 @@ public class BuildingManager : MonoBehaviour
 
         hammerImageObj.SetActive(false);
         activeIncomeText.gameObject.SetActive(true);
-        activeHouseObj.SetActive(true);
+   
         progressCircleImage.gameObject.SetActive(false);
 
         if (playerBuilding)

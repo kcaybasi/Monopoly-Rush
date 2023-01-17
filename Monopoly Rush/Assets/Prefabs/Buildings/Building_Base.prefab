@@ -108,14 +108,13 @@ MonoBehaviour:
   brickAmountToActivate: 15
   buildingState: 0
   buildingFrontTarget: {fileID: 6653669257309499687}
-  dummyBuilding: {fileID: 3648519581952016247}
+  activeBuilding: {fileID: 3648519581952016247}
   buildTeam: {fileID: 5673027036338585922}
   circleBackgroundImage: {fileID: 3967284330951321175}
   progressCircleImage: {fileID: 3967284330079324802}
   buildParticle: {fileID: 8725909816586164179}
   pieceSmashParticle: {fileID: 17010121151253918}
   hammerImageObj: {fileID: 3967284329803401321}
-  activeHouseObj: {fileID: 3648519581952016247}
   activeIncomeText: {fileID: 3624336655493914190}
   inactiveIncomeText: {fileID: 7186389740567043023}
   incomeAmount: 0
