@@ -16,7 +16,7 @@ namespace AIStateMachine
         {
             if (StateManager.reachedBuilding != null)
             {
-                if (StateManager.reachedBuilding.CompareTag("ActiveBuilding") || StateManager.collector.collectedBricks <= 0)
+                if (StateManager.reachedBuilding.CompareTag("ActiveBuilding") || StateManager.collector.CollectedBricks <= 0)
                 {
                     SwitchState(StateFactory.MovementState());
                 }

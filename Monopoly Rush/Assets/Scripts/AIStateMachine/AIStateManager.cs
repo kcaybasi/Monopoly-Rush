@@ -84,12 +84,12 @@ namespace AIStateMachine
 
         public bool BrickCapacityFull()
         {
-            return collector.collectedBricks >= _brickCapacity;
+            return collector.CollectedBricks >= _brickCapacity;
         }
 
         public List<GameObject> GetDecidedTargetList()
         {
-            if (collector.collectedBricks < _brickCapacity)
+            if (collector.CollectedBricks < _brickCapacity)
             {
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;

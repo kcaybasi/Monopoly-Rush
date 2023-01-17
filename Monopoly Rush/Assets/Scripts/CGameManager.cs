@@ -58,7 +58,7 @@ public class CGameManager : MonoBehaviour
         
         for (int i = 0; i < collectorList.Count; i++)
         {
-            _scoreList.Add(new Score(collectorList[i].transform.name, collectorList[i].total_cash_amount));
+            _scoreList.Add(new Score(collectorList[i].transform.name, collectorList[i].TotalCashAmount));
         }
 
         _sceneIndex = SceneManager.GetActiveScene().buildIndex;
