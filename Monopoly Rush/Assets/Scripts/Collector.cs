@@ -46,6 +46,19 @@ public class Collector : MonoBehaviour
             CollectObject(other, _brickStackPosition);
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if ( other.CompareTag("InactiveBuilding"))
+        {
+            if (CollectedBricks > 0)
+            {
+                _buildingManager.CheckBuildingStatus(gameObject); // Check building status constantly
+                SetPlayerBuildingStatus(); // To check if player has build it or not
+                if (_collectedBrickList.Count == 0) { return; } // If list is empty, return because building is complete
+                StartCoroutine(SpendObject(other)); // Spend object from list
+            }
+        }
+    }
     
     private void CollectObject(Collider collider,Vector3 stackPosition)
     {
@@ -83,19 +96,6 @@ public class Collector : MonoBehaviour
         ObjectPooler.Instance.BrickPool.Release(spendObj); // Release object to pool
         CollectedBricks--; // Decrease collected bricks
         _brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
-    }
-    private void OnTriggerStay(Collider other)
-    {
-        if ( other.CompareTag("InactiveBuilding"))
-        {
-            if (CollectedBricks > 0)
-            {
-                _buildingManager.CheckBuildingStatus(gameObject); // Check building status constantly
-                SetPlayerBuildingStatus();
-                if (_collectedBrickList.Count == 0) { return; } // If list is empty, return because building is complete
-                StartCoroutine(SpendObject(other)); // Spend object from list
-            }
-        }
     }
 
     private void SetPlayerBuildingStatus()

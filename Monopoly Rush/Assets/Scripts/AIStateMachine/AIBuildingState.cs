@@ -23,7 +23,6 @@ namespace AIStateMachine
                     SwitchState(StateFactory.MovementState());
                 }
             }
-
         }
 
         public override void ExitState()

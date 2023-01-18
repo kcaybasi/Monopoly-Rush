@@ -40,7 +40,7 @@ namespace AIStateMachine
             {
                 StateManager.reachedBuilding = other.gameObject;
             }
-            if (other.CompareTag("ActiveBuilding")) // To avoid stuck at finished building. Later on stop timing will be add. 
+            if (other.CompareTag("ActiveBuilding")) // To avoid stuck at finished building 
             {
                 SwitchState(StateFactory.MovementState());
             }
