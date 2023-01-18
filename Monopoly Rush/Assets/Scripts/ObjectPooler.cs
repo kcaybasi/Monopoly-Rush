@@ -25,7 +25,6 @@ public class ObjectPooler : MonoBehaviour
         }
         BrickPool = new ObjectPool<GameObject>(CreateBrick, OnTakeBrickFromPool, OnReturnBrickToPool);
         CashPool = new ObjectPool<GameObject>(CreateCash, OnTakeCashFromPool, OnReturnCashToPool);
-
     }
 
     #region Brick Pooling
