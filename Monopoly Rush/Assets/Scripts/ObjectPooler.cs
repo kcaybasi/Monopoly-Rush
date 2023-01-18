@@ -4,21 +4,29 @@ using UnityEngine.Pool;
 
 public class ObjectPooler : MonoBehaviour
 {
-    public static ObjectPooler instance;
+    public static ObjectPooler Instance;
 
-    public ObjectPool<GameObject> brickPool;
-    public ObjectPool<GameObject> cashPool;
+    public ObjectPool<GameObject> BrickPool;
+    public ObjectPool<GameObject> CashPool;
 
-    public GameObject cashPrefab,brickPrefab;
+    [SerializeField] GameObject cashPrefab,brickPrefab;
+    [SerializeField] GameObject cashParent,brickParent;
   
     
 
     private void Awake()
     {
-        instance = this;
-
-        brickPool = new ObjectPool<GameObject>(CreateBrick, OnTakeBrickFromPool, OnReturnBrickToPool);
-        cashPool = new ObjectPool<GameObject>(CreateCash, OnTakeCashFromPool, OnReturnCashToPool);
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        BrickPool = new ObjectPool<GameObject>(CreateBrick, OnTakeBrickFromPool, OnReturnBrickToPool);
+        CashPool = new ObjectPool<GameObject>(CreateCash, OnTakeCashFromPool, OnReturnCashToPool);
 
     }
 
@@ -26,8 +34,7 @@ public class ObjectPooler : MonoBehaviour
 
     GameObject CreateBrick()
     {
-        var brick = Instantiate(brickPrefab);
-        
+        var brick = Instantiate(brickPrefab,brickParent.transform);
         return brick;
     }
 
@@ -35,14 +42,12 @@ public class ObjectPooler : MonoBehaviour
     {
         gameObject.SetActive(true);
         gameObject.transform.eulerAngles = new Vector3(0, 90, 0);
-
-
     }
 
     void OnReturnBrickToPool(GameObject gameObject)
     {
+        gameObject.transform.parent = brickParent.transform;
         gameObject.SetActive(false);
-        
     }
 
 
@@ -52,7 +57,7 @@ public class ObjectPooler : MonoBehaviour
 
     GameObject CreateCash()
     {
-        var cash = Instantiate(cashPrefab);
+        var cash = Instantiate(cashPrefab,cashParent.transform);
         return cash;
     }
 
@@ -67,7 +72,7 @@ public class ObjectPooler : MonoBehaviour
 
     void OnReturnCashToPool(GameObject gameObject)
     {
-        gameObject.transform.parent = null;
+        gameObject.transform.parent = cashParent.transform;
         gameObject.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         gameObject.SetActive(false);
 

@@ -89,7 +89,7 @@ public class Collector : MonoBehaviour
         _buildingManager.Build(); // Build building
         Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false); // Jump to building
         yield return spendTween.WaitForCompletion(); // Wait for jump to finish
-        ObjectPooler.instance.brickPool.Release(spendObj); // Release object to pool
+        ObjectPooler.Instance.BrickPool.Release(spendObj); // Release object to pool
         CollectedBricks--; // Decrease collected bricks
         _brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
     }

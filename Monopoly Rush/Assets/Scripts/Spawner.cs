@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
         {
             building_Manager = GetComponent<BuildingManager>();
         }
-        objectPooler = ObjectPooler.instance;
+        objectPooler = ObjectPooler.Instance;
         cashSpawnTime = 2;
         brick_Spawn_Limit = 500;
 
@@ -92,7 +92,7 @@ public class Spawner : MonoBehaviour
     {
         isCashSpawningAllowed = false;
 
-        GameObject obj= objectPooler.cashPool.Get();
+        GameObject obj= objectPooler.CashPool.Get();
         float randomX = Random.Range(-4.0f, 4.0f);
         float randomZ = Random.Range(-4.0f, 4.0f);
         
@@ -112,7 +112,7 @@ public class Spawner : MonoBehaviour
     {
 
         isBrickSpawningAllowed = false;
-        GameObject obj = objectPooler.brickPool.Get();
+        GameObject obj = objectPooler.BrickPool.Get();
         activeBrick++;
 
         float randomX = Random.Range(-5.0f, 5.0f);
