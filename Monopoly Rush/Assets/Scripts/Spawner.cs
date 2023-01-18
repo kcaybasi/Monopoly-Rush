@@ -8,11 +8,10 @@ using Task = System.Threading.Tasks.Task;
 
 public class Spawner : MonoBehaviour
 {
+    // Components
     private ObjectPooler _objectPooler;
     
-    
     [Header("Brick Spawn")]
-
     [SerializeField] Transform brickSpawnTransform;
     readonly int _brickSpawnTime=300; // Milliseconds
     private bool _isBrickSpawningAllowed;

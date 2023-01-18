@@ -11,8 +11,6 @@ public class ObjectPooler : MonoBehaviour
 
     [SerializeField] GameObject cashPrefab,brickPrefab;
     [SerializeField] GameObject cashParent,brickParent;
-  
-    
 
     private void Awake()
     {
@@ -64,19 +62,13 @@ public class ObjectPooler : MonoBehaviour
     void OnTakeCashFromPool(GameObject gameObject)
     {
         gameObject.SetActive(true);
-        gameObject.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
-        gameObject.transform.rotation = Quaternion.identity;
         gameObject.GetComponent<Collider>().enabled = true;
-
     }
 
     void OnReturnCashToPool(GameObject gameObject)
     {
         gameObject.transform.parent = cashParent.transform;
-        gameObject.transform.localScale = new Vector3(0.75f, 0.75f, 0.75f);
         gameObject.SetActive(false);
-
-
     }
 
     #endregion

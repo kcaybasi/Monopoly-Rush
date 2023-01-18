@@ -64,7 +64,7 @@ public class CGameManager : MonoBehaviour
     {
         for (int i = 0; i < collectorList.Count; i++)
         {
-            _scoreList.Add(new Score(collectorList[i].transform.name, collectorList[i].TotalCashAmount));
+            _scoreList.Add(new Score(collectorList[i].transform.name, 0));
         }
     }
     

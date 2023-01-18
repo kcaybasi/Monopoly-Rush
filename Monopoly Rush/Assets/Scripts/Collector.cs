@@ -19,17 +19,13 @@ public class Collector : MonoBehaviour
     [SerializeField] float brickStackingSpace; // Space between bricks
     private readonly List<GameObject> _collectedBrickList = new List<GameObject>(); // List of collected bricks
     public int CollectedBricks { get; set; }
-    
-    [Header("Cash Collection")]
-    [SerializeField] private float _cashCollectionTime; // Time to collect cash
-    public int TotalCashAmount { get; }
-    
+
     private void Awake()
     {
         // Set DoTween capacity
         DOTween.Init();
         DOTween.SetTweensCapacity(1000, 250);
-
+        
         // Starting collect positions
         if (transform.CompareTag("Player"))
             _brickStackPosition = new Vector3(0f, 1f, -0.5f);
@@ -78,6 +74,7 @@ public class Collector : MonoBehaviour
         // Get last object on the list
         int lastObjOnTheList = _collectedBrickList.Count - 1; 
         GameObject spendObj = _collectedBrickList[lastObjOnTheList];
+        
         _collectedBrickList.Remove(spendObj); // Remove from list
         spendObj.transform.parent = null; // Remove parent
         _buildingManager.Build(); // Build building
