@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,8 +15,6 @@ public class PlayerController : MonoBehaviour
 
     CharacterController _characterController;
     Animator _pAnimator;
-    CGameManager _cGameManager;
-
     // Variables to store input values
 
     Vector3 _currentMovement;
@@ -27,12 +26,10 @@ public class PlayerController : MonoBehaviour
     {  
         _characterController = GetComponent<CharacterController>();
         _pAnimator = GetComponent<Animator>();
-
     }
 
     private void Start()
     {
-        _cGameManager = CGameManager.Instance;
         CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
     }
 
@@ -64,16 +61,13 @@ public class PlayerController : MonoBehaviour
         positionToLookAt.x = dynamicJoystick.Horizontal;
         positionToLookAt.y = 0.0f;
         positionToLookAt.z = dynamicJoystick.Vertical;
-  
-
+        
         Quaternion currentRotation = transform.rotation;
         if (positionToLookAt != Vector3.zero)
         {
             Quaternion targetRotation = Quaternion.LookRotation(positionToLookAt);
             transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
-
-
     }
 
     void HandleGravity()
@@ -99,5 +93,8 @@ public class PlayerController : MonoBehaviour
         _characterController.Move(_currentMovement * Time.deltaTime * movementSpeed);
     }
 
-
+    private void OnDestroy()
+    {
+        CGameManager.OnGameFinish -= C_GameManager_OnGameFinish;
+    }
 }

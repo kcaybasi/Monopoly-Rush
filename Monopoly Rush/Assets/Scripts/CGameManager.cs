@@ -33,12 +33,10 @@ public class CGameManager : MonoBehaviour
     public TextMeshProUGUI activeBuildingCountText;
 
     public List<GameObject> supplyLineList;
-
-    public List<GameObject> playerList;
+    
     [SerializeField] ParticleSystem playerConfetti;
 
     int _sceneIndex;
-    
     public static Action OnGameFinish;
 
     private void Awake()

@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 namespace AIStateMachine
 {
@@ -39,7 +41,7 @@ namespace AIStateMachine
 
         private void C_GameManager_OnGameFinish()
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
             GetComponent<Collector>().enabled = false;
         }
 
@@ -58,11 +60,9 @@ namespace AIStateMachine
         {
             _navMeshAgent.SetDestination(targetPos);
         }
-
-
+        
         public GameObject GetClosestTarget(List<GameObject> targetList)
         {
-
             List<float> distanceList = new List<float>();
 
             for (int i = 0; i < targetList.Count; i++)
@@ -70,7 +70,6 @@ namespace AIStateMachine
                 float distance = Vector3.Magnitude(transform.position - targetList[i].transform.position);
                 distanceList.Add(distance);
             }
-
             var minValue = Mathf.Min(distanceList.ToArray());
             int index = distanceList.IndexOf(minValue);
             
@@ -100,8 +99,7 @@ namespace AIStateMachine
                 return CGameManager.Instance.inactiveBuildingList;
             }
         }
-
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("InactiveBuilding"))
@@ -113,6 +111,11 @@ namespace AIStateMachine
             {
                 SwitchState(_stateFactory.MovementState());
             }
+        }
+
+        private void OnDestroy()
+        {
+            CGameManager.OnGameFinish -= C_GameManager_OnGameFinish;
         }
     }
 }
