@@ -11,8 +11,7 @@ public class PlayerController : MonoBehaviour
 
     public float movementSpeed;
     [SerializeField] float rotationSpeed;
-
-
+    
     CharacterController _characterController;
     Animator _pAnimator;
     // Variables to store input values
