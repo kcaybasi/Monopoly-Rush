@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -17,6 +18,8 @@ namespace AIStateMachine
         private readonly float _reachDistance =3f;
         int _brickCapacity;
         public GameObject reachedBuilding;
+        public string stateName;
+       
 
 
         private void Start()
@@ -34,9 +37,8 @@ namespace AIStateMachine
             _stateFactory = new AIStateFactory(this);
             CurrentState = _stateFactory.MovementState();
             CurrentState.EnterState();
-            // Subscribe to game finish event
 
-            CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
+            CGameManager.OnGameFinish += C_GameManager_OnGameFinish; // Subscribe to game finish event
         }
 
         private void C_GameManager_OnGameFinish()
@@ -48,6 +50,7 @@ namespace AIStateMachine
         private void Update()
         {
             CurrentState.UpdateState();
+            stateName=CurrentState.ToString();
         }
 
         public void SwitchState(AIBaseState state)
@@ -106,7 +109,6 @@ namespace AIStateMachine
             {
                 reachedBuilding = other.gameObject;
             }
-
             if (other.CompareTag("ActiveBuilding")) // To avoid stucking at finished building. Later on stop timing will be add. 
             {
                 SwitchState(_stateFactory.MovementState());

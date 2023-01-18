@@ -17,15 +17,12 @@ namespace AIStateMachine
           public   abstract void UpdateState();
           public  abstract void ExitState();
           public abstract void CheckSwitchStates();
-          
-          
+
           protected void SwitchState(AIBaseState newState)
           {
                ExitState();
                newState.EnterState();
                StateManager.CurrentState = newState;
           }
-
-
      }
 }

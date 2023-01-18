@@ -59,7 +59,6 @@ public class PieceMover : MonoBehaviour
         switch (other.transform.name)
         {
             case "Player_Building":
-                
                 _cGameManager.UpdatePlayerScores(4, incomeAmount);
                 _cGameManager.playerCash += incomeAmount;
                 _cGameManager.playerCashText.text = _cGameManager.playerCash.ToString("F0");
@@ -77,12 +76,5 @@ public class PieceMover : MonoBehaviour
                 _cGameManager.UpdatePlayerScores(0, incomeAmount);
                 break;
         }
-    }
-    
-    IEnumerator PlayerCashTween()
-    {
-        Tween tween= _cGameManager.playerCashText.transform.DOPunchScale(Vector3.one, .25f, 5, 0.2f);
-        yield return tween.WaitForCompletion();
-        _cGameManager.playerCashText.transform.DORewind();
     }
 }
