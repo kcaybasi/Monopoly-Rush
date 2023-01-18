@@ -8,13 +8,10 @@ public class TutorialManager : MonoBehaviour
     Touch _touch;
     [SerializeField] GameObject tutorialObjects;
     [SerializeField] GameObject handObject;
-
     bool _isTutorialCloseAllowed=true;
-
     [SerializeField] private ParticleSystem confeti;
     [SerializeField] GameObject nextButton;
-
-
+    
     private void Start()
     {
         CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
@@ -26,7 +23,6 @@ public class TutorialManager : MonoBehaviour
         {
             confeti.Play();
         }
-        
     }
 
     private void Update()
@@ -41,10 +37,8 @@ public class TutorialManager : MonoBehaviour
                 {
                     StartCoroutine(CloseTutorialObjects());
                 }
-           
             }
         }
-
     }
 
     IEnumerator CloseTutorialObjects()
@@ -54,8 +48,7 @@ public class TutorialManager : MonoBehaviour
         handObject.SetActive(false);
         _isTutorialCloseAllowed = false;
     }
-
-
+    
     public void LoadMainScene()
     {
         SceneManager.LoadSceneAsync(1);
