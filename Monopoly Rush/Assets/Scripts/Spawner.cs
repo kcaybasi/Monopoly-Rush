@@ -14,7 +14,7 @@ public class Spawner : MonoBehaviour
     [Header("Brick Spawn")]
 
     [SerializeField] Transform brickSpawnTransform;
-    readonly int _brickSpawnTime=400; // Milliseconds
+    readonly int _brickSpawnTime=300; // Milliseconds
     private bool _isBrickSpawningAllowed;
     readonly int _brickSpawnLimit=500;
     private int _activeBrick;

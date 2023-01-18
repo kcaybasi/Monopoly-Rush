@@ -13,8 +13,7 @@ public class Collector : MonoBehaviour
 {
     // Components 
     private BuildingManager _buildingManager;
-    private CGameManager _cGameManager;
-    
+
     [Header("Brick Collection")]
     Vector3 _brickStackPosition; // Last path point for collect, local position on player 
     [SerializeField] float brickStackingSpace; // Space between bricks
@@ -38,11 +37,6 @@ public class Collector : MonoBehaviour
             _brickStackPosition = new Vector3(0f, 1f, -0.25f);
     }
 
-    private void Start()
-    {
-        _cGameManager = CGameManager.Instance;
-    }
-    
     private void OnTriggerEnter(Collider other)
     {
         // Get building manager

@@ -45,12 +45,10 @@ public class PlayerController : MonoBehaviour
         if (_currentMovement.x != 0 || _currentMovement.z != 0)
         {
             _pAnimator.SetBool(IsWalking, true);
-           
         }
         else
         {
             _pAnimator.SetBool(IsWalking, false);
-         
         }
     }
 
@@ -83,8 +81,7 @@ public class PlayerController : MonoBehaviour
             _currentMovement.y += gravity;
         }
     }
-
-
+    
     private void Update()
     {
         HandleMovement();
