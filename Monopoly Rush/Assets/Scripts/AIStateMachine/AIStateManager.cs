@@ -14,6 +14,7 @@ namespace AIStateMachine
         
         NavMeshAgent _navMeshAgent;
         public Collector collector;
+        public Builder builder;
         public int selectedListNo;
         private readonly float _reachDistance =3f;
         int _brickCapacity;
@@ -73,12 +74,12 @@ namespace AIStateMachine
 
         public bool BrickCapacityFull()
         {
-            return collector.CollectedBricks >= _brickCapacity;
+            return builder.CollectedBricks >= _brickCapacity;
         }
 
         public List<GameObject> GetDecidedTargetList()
         {
-            if (collector.CollectedBricks < _brickCapacity)
+            if (builder.CollectedBricks < _brickCapacity)
             {
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;
