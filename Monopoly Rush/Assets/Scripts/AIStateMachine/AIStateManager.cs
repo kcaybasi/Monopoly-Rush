@@ -18,10 +18,6 @@ namespace AIStateMachine
         private readonly float _reachDistance =3f;
         int _brickCapacity;
         public GameObject reachedBuilding;
-        public string stateName;
-       
-
-
         private void Start()
         {
             //Randomize brick capacity for every AI 
@@ -50,15 +46,8 @@ namespace AIStateMachine
         private void Update()
         {
             CurrentState.UpdateState();
-            stateName=CurrentState.ToString();
         }
-
-        public void SwitchState(AIBaseState state)
-        {
-            CurrentState = state;
-            state.EnterState();
-        }
-
+        
         public void MoveTo(Vector3 targetPos)
         {
             _navMeshAgent.SetDestination(targetPos);
@@ -66,22 +55,20 @@ namespace AIStateMachine
         
         public GameObject GetClosestTarget(List<GameObject> targetList)
         {
-            List<float> distanceList = new List<float>();
-
+            List<float> distanceList = new List<float>(); // List of distances between AI and targets
             for (int i = 0; i < targetList.Count; i++)
             {
-                float distance = Vector3.Magnitude(transform.position - targetList[i].transform.position);
-                distanceList.Add(distance);
+                float distance = Vector3.Magnitude(transform.position - targetList[i].transform.position); // Calculate distance between AI and target
+                distanceList.Add(distance); // Add distance to list
             }
-            var minValue = Mathf.Min(distanceList.ToArray());
+            var minValue = Mathf.Min(distanceList.ToArray()); // Get minimum value from list
             int index = distanceList.IndexOf(minValue);
-            
             return targetList[index].transform.gameObject;
         }
 
         public bool TargetReached(Vector3 targetPos)
         {
-            return Vector3.Magnitude(transform.position - targetPos) < _reachDistance;
+            return Vector3.Magnitude(transform.position - targetPos) < _reachDistance; 
         }
 
         public bool BrickCapacityFull()
@@ -96,17 +83,13 @@ namespace AIStateMachine
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;
             }
-            else
-            {
-                selectedListNo = 1;
-                return CGameManager.Instance.inactiveBuildingList;
-            }
+            selectedListNo = 1;
+            return CGameManager.Instance.inactiveBuildingList;
         }
         
         private void OnTriggerEnter(Collider other)
         {
             CurrentState.OnTriggerEnter(other);
-    
         }
 
         private void OnDestroy()

@@ -30,17 +30,10 @@ namespace AIStateMachine
                     SwitchState(StateFactory.BuildingState());
             }
         }
-
         public override void ExitState()
         {
             
         }
-
-        public override void CheckSwitchStates()
-        {
-            
-        }
-
         public override void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("InactiveBuilding"))

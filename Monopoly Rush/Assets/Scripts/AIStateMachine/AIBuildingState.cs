@@ -30,12 +30,6 @@ namespace AIStateMachine
         {
             
         }
-
-        public override void CheckSwitchStates()
-        {
-            
-        }
-
         public override void OnTriggerEnter(Collider other)
         {
             

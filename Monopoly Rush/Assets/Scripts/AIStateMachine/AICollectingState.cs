@@ -30,26 +30,15 @@ namespace AIStateMachine
         public override void UpdateState()
         {
             if (!StateManager.BrickCapacityFull())
-            {
                 FollowBrickPath(StateManager);
-            }      
             else
-            {
                 SwitchState(StateFactory.MovementState());
-            }
-
         }
 
         public override void ExitState()
         {
             
         }
-
-        public override void CheckSwitchStates()
-        {
-            
-        }
-
         public override void OnTriggerEnter(Collider other)
         {
             
@@ -65,17 +54,13 @@ namespace AIStateMachine
                 {
                     _timeSinceLastWaypoint = 0f;
                     CycleWayPoint();
-
                 }
                 nextPosition = GetCurrentWayPoint();
-
             }
             if (_timeSinceLastWaypoint > _dwellTime)
             {
                 aiPlayer.MoveTo(nextPosition);
-
             }
-
             _timeSinceLastWaypoint += Time.deltaTime;
         }
 
