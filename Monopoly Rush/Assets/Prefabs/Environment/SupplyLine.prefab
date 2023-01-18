@@ -205,9 +205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce4a1c43942a0c48b2f9086510ea0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cashSpawnTransform: {fileID: 0}
   brickSpawnTransform: {fileID: 614864892358962239}
-  brickSpawnTime: 0.25
+  brickSpawnTime: 1500
   activeBrick: 0
 --- !u!1 &614864892747737762
 GameObject:

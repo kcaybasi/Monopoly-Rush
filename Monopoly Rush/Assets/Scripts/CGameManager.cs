@@ -43,38 +43,40 @@ public class CGameManager : MonoBehaviour
     {
         //Singleton
         if (Instance == null)
-        {
             Instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-        }
 
+        // Quality Settings
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
         
+        CreateScoreList(); 
+        
+        _sceneIndex = SceneManager.GetActiveScene().buildIndex; // Get the current scene index
+
+        // Initialize Facebook and GameAnalytics SDK
+        FB.Init();
+        GameAnalytics.Initialize();
+    }
+
+    private void CreateScoreList()
+    {
         for (int i = 0; i < collectorList.Count; i++)
         {
             _scoreList.Add(new Score(collectorList[i].transform.name, collectorList[i].TotalCashAmount));
         }
-
-        _sceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        FB.Init();
-        GameAnalytics.Initialize();
     }
     
- 
     public void UpdateBuildingList(GameObject building)
     {
-        inactiveBuildingList.Remove(building); 
-        activeBuildingList.Add(building);
+        inactiveBuildingList.Remove(building); // Remove the building from inactive list
+        activeBuildingList.Add(building); // Add the building to active list
         activeBuildingCountText.text = activeBuildingList.Count.ToString("F0")+" / "+(inactiveBuildingList.Count+activeBuildingList.Count).ToString("F0");  //Update building text
 
         if (!DOTween.IsTweening(activeBuildingCountText.transform))
         {
-            activeBuildingCountText.transform.DOPunchScale(Vector3.one, .3f, 5, 0.2f);
+            activeBuildingCountText.transform.DOPunchScale(Vector3.one, .3f, 5, 0.2f); 
         }
     }
 
@@ -100,16 +102,14 @@ public class CGameManager : MonoBehaviour
             }
         }
     }
-    
-    public void ShowLeaderboard()
+
+    private void ShowLeaderboard()
     {
         leaderboard.SetActive(true);
         leaderboard.transform.DOScale(0.75f, 1f);
     }
 
-
-
-    public void SortScore()
+    private void SortScore()
     {
         if (usernameList.Count>0)
         {
@@ -121,8 +121,7 @@ public class CGameManager : MonoBehaviour
             }
         }
     }
-
-
+    
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -149,6 +148,4 @@ public class CGameManager : MonoBehaviour
                 break;
         }
     }
-
-
 }
