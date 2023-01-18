@@ -13,15 +13,18 @@ public class Collector : MonoBehaviour
 {
     // Components 
     private BuildingManager _buildingManager;
+    private Builder _builder;
 
     [Header("Brick Collection")]
     Vector3 _brickStackPosition; // Last path point for collect, local position on player 
     [SerializeField] float brickStackingSpace; // Space between bricks
-    private readonly List<GameObject> _collectedBrickList = new List<GameObject>(); // List of collected bricks
-    public int CollectedBricks { get; set; }
+    
 
     private void Awake()
     {
+        // Get Components
+        _builder= GetComponent<Builder>();
+        
         // Set DoTween capacity
         DOTween.Init();
         DOTween.SetTweensCapacity(1000, 250);
@@ -46,20 +49,6 @@ public class Collector : MonoBehaviour
             CollectObject(other, _brickStackPosition);
         }
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if ( other.CompareTag("InactiveBuilding"))
-        {
-            if (CollectedBricks > 0)
-            {
-                _buildingManager.CheckBuildingStatus(gameObject); // Check building status constantly
-                SetPlayerBuildingStatus(); // To check if player has build it or not
-                if (_collectedBrickList.Count == 0) { return; } // If list is empty, return because building is complete
-                StartCoroutine(SpendObject(other)); // Spend object from list
-            }
-        }
-    }
-    
     private void CollectObject(Collider collider,Vector3 stackPosition)
     {
         collider.transform.parent = transform; // Set parent to player
@@ -67,8 +56,8 @@ public class Collector : MonoBehaviour
         collider.transform.DOLocalJump(stackPosition, 2f, 1, 0.3f, false); // Jump to stack position
         Vector3 rotationVec = new Vector3(0, 90f, 0); // Set rotation vector
         collider.transform.DOLocalRotate(rotationVec, 0.5f, RotateMode.Fast); // Rotate to stack position
-        _collectedBrickList.Add(collider.gameObject); // Add to collected list
-        CollectedBricks++; // Increase collected bricks
+        _builder.ColllectedBricksList.Add(collider.gameObject); // Add to collected list
+        _builder.CollectedBricks++; // Increase collected bricks
         _brickStackPosition.y += brickStackingSpace; // Increase stack position y
         CollectFeedback(); // Play collect feedback
     }
@@ -81,20 +70,37 @@ public class Collector : MonoBehaviour
             AudioManager.Instance.Play("Collect");
         }
     }
+    private void OnTriggerStay(Collider other)
+    {
+        if ( other.CompareTag("InactiveBuilding"))
+        {
+           // _buildingManager.CheckBuildingStatus(gameObject); // Check building status constantly
+           // BuildingProcess(other);
+        }
+    }
 
+    public void BuildingProcess(Collider other)
+    {
+        if (_builder.CollectedBricks > 0)
+        {
+            SetPlayerBuildingStatus(); // To check if player has build it or not
+            if (_builder.ColllectedBricksList.Count == 0) return; // If list is empty, return because building is complete
+            StartCoroutine(SpendObject(other)); // Spend object from list
+        }
+    }
     private IEnumerator SpendObject(Collider collider)
     {
         // Get last object on the list
-        int lastObjOnTheList = _collectedBrickList.Count - 1; 
-        GameObject spendObj = _collectedBrickList[lastObjOnTheList];
+        int lastObjOnTheList = _builder.ColllectedBricksList.Count - 1; 
+        GameObject spendObj = _builder.ColllectedBricksList[lastObjOnTheList];
         
-        _collectedBrickList.Remove(spendObj); // Remove from list
+        _builder.ColllectedBricksList.Remove(spendObj); // Remove from list
         spendObj.transform.parent = null; // Remove parent
-        _buildingManager.Build(); // Build building
+         _buildingManager.Build(); // Build building
         Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false); // Jump to building
         yield return spendTween.WaitForCompletion(); // Wait for jump to finish
         ObjectPooler.Instance.BrickPool.Release(spendObj); // Release object to pool
-        CollectedBricks--; // Decrease collected bricks
+        _builder.CollectedBricks--; // Decrease collected bricks
         _brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
     }
 

@@ -68,9 +68,9 @@ public class BuildingManager : MonoBehaviour
     {
         if (brickAmountToActivate <= 0)
         {
-            _cGameManager.UpdateBuildingList(buildingFrontTarget); // Updating the building list
-            _cGameManager.CheckIfGameFinished(); // Checking if the game is finished
-            buildingState = BuildingState.Active; // Changing the building state
+            _cGameManager.UpdateBuildingList(buildingFrontTarget); 
+            _cGameManager.CheckIfGameFinished(); 
+            buildingState = BuildingState.Active; // Changing the building state to active
             gameObject.tag = "ActiveBuilding"; // Changing the tag of the building
             transform.name = gameobj.transform.name + "_Building"; // Changing the name of the building
             StartCoroutine(SpawnBuildTeam()); // Spawning the build team
@@ -103,12 +103,5 @@ public class BuildingManager : MonoBehaviour
             playerIcon.SetActive(true); // Activate the player icon if the building is player's building
         }
     }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("AI") || other.CompareTag("Player"))
-        {
-            
-        }
-    }
+    
 }
