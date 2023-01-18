@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace AIStateMachine
 {
     public class AIBuildingState : AIBaseState
@@ -30,6 +32,11 @@ namespace AIStateMachine
         }
 
         public override void CheckSwitchStates()
+        {
+            
+        }
+
+        public override void OnTriggerEnter(Collider other)
         {
             
         }

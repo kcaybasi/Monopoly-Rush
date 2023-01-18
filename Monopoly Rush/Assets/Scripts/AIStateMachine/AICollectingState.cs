@@ -50,6 +50,11 @@ namespace AIStateMachine
             
         }
 
+        public override void OnTriggerEnter(Collider other)
+        {
+            
+        }
+
         private void FollowBrickPath(AIStateManager aiPlayer)
         {
             Vector3 nextPosition = _currentLocation;

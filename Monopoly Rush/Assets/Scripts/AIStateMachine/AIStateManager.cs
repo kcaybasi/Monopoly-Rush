@@ -105,14 +105,8 @@ namespace AIStateMachine
         
         private void OnTriggerEnter(Collider other)
         {
-            if (other.CompareTag("InactiveBuilding"))
-            {
-                reachedBuilding = other.gameObject;
-            }
-            if (other.CompareTag("ActiveBuilding")) // To avoid stucking at finished building. Later on stop timing will be add. 
-            {
-                SwitchState(_stateFactory.MovementState());
-            }
+            CurrentState.OnTriggerEnter(other);
+    
         }
 
         private void OnDestroy()
