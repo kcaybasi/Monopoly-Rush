@@ -11,14 +11,14 @@ namespace AIStateMachine
     {
         public AIBaseState CurrentState { get; set; }
         private AIStateFactory _stateFactory;
-        
         NavMeshAgent _navMeshAgent;
-    
         public BrickManager brickManager;
         public int selectedListNo;
         private readonly float _reachDistance =3f;
         int _brickCapacity;
+        public string State;
         public GameObject reachedBuilding;
+       
         private void Start()
         {
             //Randomize brick capacity for every AI 
@@ -46,6 +46,7 @@ namespace AIStateMachine
 
         private void Update()
         {
+            State=CurrentState.ToString();
             CurrentState.UpdateState();
         }
         
@@ -79,7 +80,7 @@ namespace AIStateMachine
 
         public List<GameObject> GetDecidedTargetList()
         {
-            if (brickManager.CollectedBricks < _brickCapacity)
+            if (!BrickCapacityFull())
             {
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;

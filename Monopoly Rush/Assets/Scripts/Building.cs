@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 
-public class BuildingManager : MonoBehaviour
+public class Building : MonoBehaviour
 {
     // Components
     CGameManager _cGameManager;

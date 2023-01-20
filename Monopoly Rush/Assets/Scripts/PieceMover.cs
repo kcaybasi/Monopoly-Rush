@@ -47,7 +47,7 @@ public class PieceMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        BuildingManager buildingManager = other.GetComponent<BuildingManager>();
+        Building buildingManager = other.GetComponent<Building>();
 
         if (buildingManager == null) { return; }
         int incomeAmount = buildingManager.IncomeAmount;

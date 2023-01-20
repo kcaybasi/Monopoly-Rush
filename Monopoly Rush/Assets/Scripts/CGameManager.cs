@@ -51,6 +51,10 @@ public class CGameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         QualitySettings.vSyncCount = 0;
         
+        // Set DoTween capacity
+        DOTween.Init();
+        DOTween.SetTweensCapacity(1000, 250);
+        
         CreateScoreList(); 
         
         _sceneIndex = SceneManager.GetActiveScene().buildIndex; // Get the current scene index
