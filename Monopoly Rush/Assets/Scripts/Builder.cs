@@ -28,19 +28,21 @@ public class Builder : MonoBehaviour
             _building.CheckBuildingStatus(gameObject); // Check building status constantly
             SetPlayerBuildingStatus();
             if (_brickManager.BricksList.Count == 0) return;
-            StartCoroutine(SpendObject(other));
+            SpendObject(other);
         }
     }
-    private IEnumerator SpendObject(Collider collider)
+
+    async void SpendObject(Collider collider)
     {
         // Get last object on the list
         int lastObjOnTheList = _brickManager.BricksList.Count - 1; 
         GameObject spendObj = _brickManager.BricksList[lastObjOnTheList];
         _brickManager.BricksList.Remove(spendObj); 
-        spendObj.transform.parent = null; 
+        spendObj.transform.parent = null;
+        _building.brickAmountToActivate--;
         _building.Build(); 
-        Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false); 
-        yield return spendTween.WaitForCompletion(); // Wait for jump to finish
+        Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false);
+        await spendTween.AsyncWaitForCompletion(); // Wait for jump to finish
         ObjectPooler.Instance.BrickPool.Release(spendObj); 
         _brickManager.CollectedBricks--; 
         _brickManager.UpdateBrickStackPosition(false);

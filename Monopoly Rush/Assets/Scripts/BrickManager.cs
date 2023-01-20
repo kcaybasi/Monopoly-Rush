@@ -5,15 +5,11 @@ using UnityEngine;
 
 public class BrickManager : MonoBehaviour
 {
-    private List<GameObject> _bricksList = new List<GameObject>();
     public int CollectedBricks { get; set; }
+    [HideInInspector]
     public Vector3 brickStackPosition; // Last path point for collect, local position on player 
     public float brickStackingSpace; // Space between bricks
-    public List<GameObject> BricksList
-    {
-        get => _bricksList;
-        set => _bricksList = value;
-    }
+    public List<GameObject> BricksList { get; set; } = new List<GameObject>();
 
     private void Awake()
     {

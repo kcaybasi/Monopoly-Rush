@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -14,8 +15,6 @@ public class Building : MonoBehaviour
 
     [Header("Building Properties")]
     public float brickAmountToActivate=15;
-    public enum BuildingState { Inactive, Active}
-    public BuildingState buildingState = BuildingState.Inactive;
     [SerializeField] GameObject buildingFrontTarget;
     public int IncomeAmount { get; set; }
     
@@ -30,7 +29,7 @@ public class Building : MonoBehaviour
     [SerializeField] GameObject hammerImageObj;
     [SerializeField] GameObject activeBuilding;
     [SerializeField] GameObject buildTeam;
-    readonly float _buildTime=.75f;
+    readonly int _buildTime=750;
     [SerializeField] private ParticleSystem buildParticle;
     public bool IsPlayerBuilding { get; set; }
     [SerializeField] GameObject playerIcon;
@@ -47,14 +46,12 @@ public class Building : MonoBehaviour
         inactiveIncomeText.text= "$" + IncomeAmount.ToString("F0") +"/s";
         activeIncomeText.text = "$" + IncomeAmount.ToString("F0")+"/s";
     }
-
     private void Start()
     {
         _cGameManager = CGameManager.Instance;
         _cGameManager.inactiveBuildingList.Add(buildingFrontTarget); // Adding all of the buildings to inactive list
         _cGameManager.totalBuildingList.Add(buildingFrontTarget); // Adding all of the buildings to total building list
     }
-    
     public void Build()
     {
         if (brickAmountToActivate >= 0)
@@ -63,24 +60,22 @@ public class Building : MonoBehaviour
             progressCircleImage.fillAmount += _progressIncrement;
         }
     }
-
     public void CheckBuildingStatus(GameObject gameobj)
     {
         if (brickAmountToActivate <= 0)
         {
             _cGameManager.UpdateBuildingList(buildingFrontTarget); 
-            _cGameManager.CheckIfGameFinished(); 
-            buildingState = BuildingState.Active; // Changing the building state to active
+            _cGameManager.CheckIfGameFinished();
             gameObject.tag = "ActiveBuilding"; // Changing the tag of the building
             transform.name = gameobj.transform.name + "_Building"; // Changing the name of the building
-            StartCoroutine(SpawnBuildTeam()); // Spawning the build team
+            SpawnBuildTeam(); 
         }
     }
-    IEnumerator SpawnBuildTeam()
+    async void SpawnBuildTeam()
     {
         buildTeam.SetActive(true);
         buildTeam.transform.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
-        yield return new WaitForSeconds(_buildTime);
+        await Task.Delay(_buildTime);
         buildTeam.SetActive(false);     
         ActivateBuilding();
     }
