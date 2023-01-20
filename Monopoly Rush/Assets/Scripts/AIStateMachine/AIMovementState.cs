@@ -21,7 +21,7 @@ namespace AIStateMachine
         }
 
         public override void UpdateState()
-        {
+        { 
             if (StateManager.TargetReached(_destination.transform.position))
             {
                 if (StateManager.selectedListNo == 0) // Checks which list we selected 

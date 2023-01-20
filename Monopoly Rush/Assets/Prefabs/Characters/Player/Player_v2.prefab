@@ -1257,6 +1257,7 @@ GameObject:
   - component: {fileID: 2057077850675460018}
   - component: {fileID: 7502594634078299344}
   - component: {fileID: 6061937424904518006}
+  - component: {fileID: 1369033941086611466}
   m_Layer: 0
   m_Name: Player_v2
   m_TagString: Player
@@ -1352,11 +1353,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickStackingSpace: 0.3
-  collectedBricks: 0
-  building_Manager: {fileID: 0}
-  cash_tag: Cash
-  cash_text: {fileID: 0}
-  total_cash_amount: 0
+--- !u!114 &1369033941086611466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502594634078299351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa305da9c6fa743d886c99e55a60b7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7592469806373424433
 GameObject:
   m_ObjectHideFlags: 0

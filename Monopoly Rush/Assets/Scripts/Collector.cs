@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using DG.Tweening;
+using ES3Types;
 using TMPro;
 using MoreMountains.NiceVibrations;
 using UnityEngine.Serialization;
@@ -13,27 +14,18 @@ public class Collector : MonoBehaviour
 {
     // Components 
     private BuildingManager _buildingManager;
-    private Builder _builder;
-
-    [Header("Brick Collection")]
-    Vector3 _brickStackPosition; // Last path point for collect, local position on player 
-    [SerializeField] float brickStackingSpace; // Space between bricks
+    private BrickManager _brickManager;
     
 
+  
     private void Awake()
     {
         // Get Components
-        _builder= GetComponent<Builder>();
+        _brickManager = GetComponent<BrickManager>();
         
         // Set DoTween capacity
         DOTween.Init();
         DOTween.SetTweensCapacity(1000, 250);
-        
-        // Starting collect positions
-        if (transform.CompareTag("Player"))
-            _brickStackPosition = new Vector3(0f, 1f, -0.5f);
-        else
-            _brickStackPosition = new Vector3(0f, 1f, -0.25f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -46,7 +38,7 @@ public class Collector : MonoBehaviour
         // Collect bricks
         if (other.CompareTag("Brick"))
         {
-            CollectObject(other, _brickStackPosition);
+           // CollectObject(other, _brickStackPosition);
         }
     }
     private void CollectObject(Collider collider,Vector3 stackPosition)
@@ -56,9 +48,9 @@ public class Collector : MonoBehaviour
         collider.transform.DOLocalJump(stackPosition, 2f, 1, 0.3f, false); // Jump to stack position
         Vector3 rotationVec = new Vector3(0, 90f, 0); // Set rotation vector
         collider.transform.DOLocalRotate(rotationVec, 0.5f, RotateMode.Fast); // Rotate to stack position
-        _builder.ColllectedBricksList.Add(collider.gameObject); // Add to collected list
-        _builder.CollectedBricks++; // Increase collected bricks
-        _brickStackPosition.y += brickStackingSpace; // Increase stack position y
+        _brickManager.BricksList.Add(collider.gameObject); // Add to collected list
+        _brickManager.CollectedBricks++; // Increase collected bricks
+        _brickManager.UpdateBrickStackPosition(true);
         CollectFeedback(); // Play collect feedback
     }
 
@@ -79,7 +71,7 @@ public class Collector : MonoBehaviour
         }
     }
 
-    public void BuildingProcess(Collider other)
+    /*public void BuildingProcess(Collider other)
     {
         if (_builder.CollectedBricks > 0)
         {
@@ -96,13 +88,13 @@ public class Collector : MonoBehaviour
         
         _builder.ColllectedBricksList.Remove(spendObj); // Remove from list
         spendObj.transform.parent = null; // Remove parent
-         _buildingManager.Build(); // Build building
+        _buildingManager.Build(); // Build building
         Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false); // Jump to building
         yield return spendTween.WaitForCompletion(); // Wait for jump to finish
         ObjectPooler.Instance.BrickPool.Release(spendObj); // Release object to pool
         _builder.CollectedBricks--; // Decrease collected bricks
-        _brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
-    }
+        //_brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
+    }*/
 
     private void SetPlayerBuildingStatus()
     {

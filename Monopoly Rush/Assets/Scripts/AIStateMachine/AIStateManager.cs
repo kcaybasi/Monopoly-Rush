@@ -29,6 +29,7 @@ namespace AIStateMachine
 
             _navMeshAgent = GetComponent<NavMeshAgent>();
             collector = GetComponent<Collector>();
+            builder= GetComponent<Builder>();
 
             //Set initial state
             _stateFactory = new AIStateFactory(this);
@@ -84,8 +85,10 @@ namespace AIStateMachine
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;
             }
+
             selectedListNo = 1;
             return CGameManager.Instance.inactiveBuildingList;
+
         }
         
         private void OnTriggerEnter(Collider other)

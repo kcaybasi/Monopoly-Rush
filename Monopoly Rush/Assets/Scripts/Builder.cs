@@ -8,12 +8,26 @@ public class Builder : MonoBehaviour
 {
     // Components 
     private BuildingManager _buildingManager;
+    private BrickManager _brickManager;
     private List<GameObject> _colllectedBricksList = new List<GameObject>();
     public int CollectedBricks { get; set; }
+    Vector3 _brickStackPosition; // Last path point for collect, local position on player 
+    public float brickStackingSpace; // Space between bricks
     public List<GameObject> ColllectedBricksList
     {
         get => _colllectedBricksList;
         set => _colllectedBricksList = value;
+    }
+
+    private void Start()
+    {
+        _brickManager = GetComponent<BrickManager>();
+        
+        // Starting collect positions
+        if (transform.CompareTag("Player"))
+            _brickStackPosition = new Vector3(0f, 1f, -0.5f);
+        else
+            _brickStackPosition = new Vector3(0f, 1f, -0.25f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +43,8 @@ public class Builder : MonoBehaviour
         if ( other.CompareTag("InactiveBuilding"))
         {
             _buildingManager.CheckBuildingStatus(gameObject); // Check building status constantly
+            if (_colllectedBricksList.Count == 0) return;
+            StartCoroutine(SpendObject(other));
         }
     }
     
@@ -45,7 +61,7 @@ public class Builder : MonoBehaviour
         yield return spendTween.WaitForCompletion(); // Wait for jump to finish
         ObjectPooler.Instance.BrickPool.Release(spendObj); // Release object to pool
         CollectedBricks--; // Decrease collected bricks
-        //_brickStackPosition.y -= brickStackingSpace; // Decrease stack position y
+        _brickManager.UpdateBrickStackPosition(false);
     }
     
     private void SetPlayerBuildingStatus()
