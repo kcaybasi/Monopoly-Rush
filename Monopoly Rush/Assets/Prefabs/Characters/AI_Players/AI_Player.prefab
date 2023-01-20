@@ -1093,9 +1093,7 @@ GameObject:
   - component: {fileID: 9113385519347027372}
   - component: {fileID: 4651320059085965098}
   - component: {fileID: 9113385519347027375}
-  - component: {fileID: 1564981677}
-  - component: {fileID: 1553763838}
-  - component: {fileID: 1531080547}
+  - component: {fileID: 705448531900001639}
   m_Layer: 0
   m_Name: AI_Player
   m_TagString: AI
@@ -1153,7 +1151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4638f33b4f2449c468453cb7b43090eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brickStackingSpace: 0.2
 --- !u!143 &9113385519347027373
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1222,7 +1219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa305da9c6fa743d886c99e55a60b7ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1564981677
+--- !u!114 &705448531900001639
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1231,33 +1228,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7580867931467678714}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa305da9c6fa743d886c99e55a60b7ba, type: 3}
+  m_Script: {fileID: 11500000, guid: 9d647df4d4e6b46cbb7e58fb47eddaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1553763838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7580867931467678714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa305da9c6fa743d886c99e55a60b7ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1531080547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7580867931467678714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa305da9c6fa743d886c99e55a60b7ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  brickStackPosition: {x: 0, y: 0, z: 0}
+  brickStackingSpace: 0.2
 --- !u!1 &8252838335819933497
 GameObject:
   m_ObjectHideFlags: 0

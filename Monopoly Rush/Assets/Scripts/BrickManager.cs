@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,16 @@ public class BrickManager : MonoBehaviour
         get => _bricksList;
         set => _bricksList = value;
     }
-    
+
+    private void Awake()
+    {
+        // Starting collect positions
+        if (transform.CompareTag("Player"))
+            brickStackPosition = new Vector3(0f, 1f, -0.5f);
+        else
+            brickStackPosition = new Vector3(0f, 1f, -0.25f);
+    }
+
     public void UpdateBrickStackPosition(bool collect)
     {
         if (collect)

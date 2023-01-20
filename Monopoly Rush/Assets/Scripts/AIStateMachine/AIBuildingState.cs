@@ -18,13 +18,12 @@ namespace AIStateMachine
         {
             if (StateManager.reachedBuilding != null)
             {
-                if (StateManager.reachedBuilding.CompareTag("ActiveBuilding") || StateManager.builder.CollectedBricks <= 0)
+                if (StateManager.reachedBuilding.CompareTag("ActiveBuilding") || StateManager.brickManager.CollectedBricks <= 0)
                 {
                     SwitchState(StateFactory.MovementState());
                 }
             }
         }
-
         public override void ExitState()
         {
             

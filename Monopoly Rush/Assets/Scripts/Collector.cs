@@ -38,14 +38,14 @@ public class Collector : MonoBehaviour
         // Collect bricks
         if (other.CompareTag("Brick"))
         {
-           // CollectObject(other, _brickStackPosition);
+            CollectObject(other);
         }
     }
-    private void CollectObject(Collider collider,Vector3 stackPosition)
+    private void CollectObject(Collider collider)
     {
         collider.transform.parent = transform; // Set parent to player
         collider.enabled = false; // Disable collider to prevent double collect
-        collider.transform.DOLocalJump(stackPosition, 2f, 1, 0.3f, false); // Jump to stack position
+        collider.transform.DOLocalJump(_brickManager.brickStackPosition, 2f, 1, 0.3f, false); // Jump to stack position
         Vector3 rotationVec = new Vector3(0, 90f, 0); // Set rotation vector
         collider.transform.DOLocalRotate(rotationVec, 0.5f, RotateMode.Fast); // Rotate to stack position
         _brickManager.BricksList.Add(collider.gameObject); // Add to collected list

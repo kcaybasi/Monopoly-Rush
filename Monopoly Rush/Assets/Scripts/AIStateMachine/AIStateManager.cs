@@ -13,8 +13,8 @@ namespace AIStateMachine
         private AIStateFactory _stateFactory;
         
         NavMeshAgent _navMeshAgent;
-        public Collector collector;
-        public Builder builder;
+    
+        public BrickManager brickManager;
         public int selectedListNo;
         private readonly float _reachDistance =3f;
         int _brickCapacity;
@@ -28,8 +28,7 @@ namespace AIStateMachine
             // Get components
 
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            collector = GetComponent<Collector>();
-            builder= GetComponent<Builder>();
+            brickManager = GetComponent<BrickManager>();
 
             //Set initial state
             _stateFactory = new AIStateFactory(this);
@@ -75,20 +74,18 @@ namespace AIStateMachine
 
         public bool BrickCapacityFull()
         {
-            return builder.CollectedBricks >= _brickCapacity;
+            return brickManager.CollectedBricks >= _brickCapacity;
         }
 
         public List<GameObject> GetDecidedTargetList()
         {
-            if (builder.CollectedBricks < _brickCapacity)
+            if (brickManager.CollectedBricks < _brickCapacity)
             {
                 selectedListNo = 0;
                 return CGameManager.Instance.supplyLineList;
             }
-
             selectedListNo = 1;
             return CGameManager.Instance.inactiveBuildingList;
-
         }
         
         private void OnTriggerEnter(Collider other)
