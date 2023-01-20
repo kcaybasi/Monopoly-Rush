@@ -86,7 +86,7 @@ public class CGameManager : MonoBehaviour
 
     public void CheckIfGameFinished()
     {
-        if (inactiveBuildingList.Count <= 0)
+        if (inactiveBuildingList.Count <= 15)
         {
             OnGameFinish?.Invoke();
             SortScore();

@@ -6,6 +6,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using Random = UnityEngine.Random;
+
 
 public class Building : MonoBehaviour
 {
@@ -17,7 +19,6 @@ public class Building : MonoBehaviour
     public float brickAmountToActivate=15;
     [SerializeField] GameObject buildingFrontTarget;
     public int IncomeAmount { get; set; }
-    
     [Header("Building Progress")]
     [SerializeField] GameObject circleBackgroundImage;
     [SerializeField] Image progressCircleImage;
@@ -29,11 +30,10 @@ public class Building : MonoBehaviour
     [SerializeField] GameObject hammerImageObj;
     [SerializeField] GameObject activeBuilding;
     [SerializeField] GameObject buildTeam;
-    readonly int _buildTime=750;
+    readonly int _buildTime=750; // Milliseconds 
     [SerializeField] private ParticleSystem buildParticle;
     public bool IsPlayerBuilding { get; set; }
     [SerializeField] GameObject playerIcon;
-    
     [Header("Piece VFX")]
     public ParticleSystem pieceSmashParticle;
     
@@ -41,6 +41,9 @@ public class Building : MonoBehaviour
     {
         // Calculate the progress increment value
         _progressIncrement = 1f / brickAmountToActivate;
+        
+        // Random the income amount
+        IncomeAmount = Random.Range(5, 25);
         
         // Assign the building text properties
         inactiveIncomeText.text= "$" + IncomeAmount.ToString("F0") +"/s";

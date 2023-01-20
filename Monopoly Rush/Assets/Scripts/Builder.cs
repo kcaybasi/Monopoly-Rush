@@ -39,8 +39,7 @@ public class Builder : MonoBehaviour
         GameObject spendObj = _brickManager.BricksList[lastObjOnTheList];
         _brickManager.BricksList.Remove(spendObj); 
         spendObj.transform.parent = null;
-        _building.brickAmountToActivate--;
-        _building.Build(); 
+        _building.Build();
         Tween spendTween = spendObj.transform.DOJump(collider.transform.position, 2f, 1, 0.5f, false);
         await spendTween.AsyncWaitForCompletion(); // Wait for jump to finish
         ObjectPooler.Instance.BrickPool.Release(spendObj); 
@@ -51,12 +50,8 @@ public class Builder : MonoBehaviour
     private void SetPlayerBuildingStatus()
     {
         if (gameObject.CompareTag("Player"))
-        {
             _building.IsPlayerBuilding = true;
-        }
         else
-        {
             _building.IsPlayerBuilding = false;
-        }
     }
 }

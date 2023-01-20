@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class PieceMover : MonoBehaviour
 {
@@ -16,9 +18,7 @@ public class PieceMover : MonoBehaviour
     {
         _cGameManager = CGameManager.Instance;
         targetList = _cGameManager.totalBuildingList;
-
         CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
-    
     }
 
     private void C_GameManager_OnGameFinish()
@@ -47,15 +47,14 @@ public class PieceMover : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Building buildingManager = other.GetComponent<Building>();
+        Building building = other.GetComponent<Building>();
 
-        if (buildingManager == null) { return; }
-        int incomeAmount = buildingManager.IncomeAmount;
-        if (!buildingManager.pieceSmashParticle.isPlaying)
+        if (building == null) { return; }
+        int incomeAmount = building.IncomeAmount;
+        if (!building.pieceSmashParticle.isPlaying)
         {
-            buildingManager.pieceSmashParticle.Play();
+            building.pieceSmashParticle.Play();
         }
-
         switch (other.transform.name)
         {
             case "Player_Building":
@@ -76,5 +75,10 @@ public class PieceMover : MonoBehaviour
                 _cGameManager.UpdatePlayerScores(0, incomeAmount);
                 break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        CGameManager.OnGameFinish -= C_GameManager_OnGameFinish;
     }
 }
