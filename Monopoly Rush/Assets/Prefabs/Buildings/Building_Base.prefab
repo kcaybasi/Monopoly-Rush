@@ -106,20 +106,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brickAmountToActivate: 15
-  buildingState: 0
   buildingFrontTarget: {fileID: 6653669257309499687}
-  activeBuilding: {fileID: 3648519581952016247}
-  buildTeam: {fileID: 5673027036338585922}
   circleBackgroundImage: {fileID: 3967284330951321175}
   progressCircleImage: {fileID: 3967284330079324802}
-  buildParticle: {fileID: 8725909816586164179}
-  pieceSmashParticle: {fileID: 17010121151253918}
-  hammerImageObj: {fileID: 3967284329803401321}
   activeIncomeText: {fileID: 3624336655493914190}
   inactiveIncomeText: {fileID: 7186389740567043023}
-  incomeAmount: 0
-  playerBuilding: 0
+  hammerImageObj: {fileID: 3967284329803401321}
+  activeBuilding: {fileID: 3648519581952016247}
+  buildTeam: {fileID: 5673027036338585922}
+  buildParticle: {fileID: 8725909816586164179}
   playerIcon: {fileID: 7311098511613809072}
+  pieceSmashParticle: {fileID: 17010121151253918}
 --- !u!114 &3098997554229087469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,10 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce4a1c43942a0c48b2f9086510ea0fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cashSpawnTransform: {fileID: 0}
   brickSpawnTransform: {fileID: 0}
-  brickSpawnTime: 0
-  activeBrick: 0
 --- !u!208 &8121111641826834307
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -176,7 +170,6 @@ GameObject:
   - component: {fileID: 6492362199644454272}
   - component: {fileID: 4580609348402538164}
   - component: {fileID: 8960548436182201957}
-  - component: {fileID: 5787023295935322109}
   m_Layer: 0
   m_Name: Highlight_Circle (1)
   m_TagString: Untagged
@@ -242,25 +235,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &5787023295935322109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2313479187524175703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &2908257458673389992
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,7 +246,6 @@ GameObject:
   - component: {fileID: 7233691784690249653}
   - component: {fileID: 3785000626648351925}
   - component: {fileID: 1969917079603624101}
-  - component: {fileID: 6822772251095079714}
   m_Layer: 0
   m_Name: Highlight_Circle
   m_TagString: Untagged
@@ -338,25 +311,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &6822772251095079714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2908257458673389992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284329794001311
 GameObject:
   m_ObjectHideFlags: 0
@@ -368,7 +322,6 @@ GameObject:
   - component: {fileID: 3967284329794001310}
   - component: {fileID: 3967284329794001308}
   - component: {fileID: 3967284329794001309}
-  - component: {fileID: 3967284331602086418}
   m_Layer: 0
   m_Name: Icon_Image
   m_TagString: Untagged
@@ -434,25 +387,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3967284331602086418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284329794001311}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284329803401321
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,7 +398,6 @@ GameObject:
   - component: {fileID: 3967284329803401236}
   - component: {fileID: 3967284329803401323}
   - component: {fileID: 3967284329803401322}
-  - component: {fileID: 3967284330537439761}
   m_Layer: 0
   m_Name: HammerImage
   m_TagString: Untagged
@@ -530,25 +463,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3967284330537439761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284329803401321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284329932024461
 GameObject:
   m_ObjectHideFlags: 0
@@ -560,7 +474,6 @@ GameObject:
   - component: {fileID: 3967284329932024462}
   - component: {fileID: 3967284329932024456}
   - component: {fileID: 3967284329932024463}
-  - component: {fileID: 3967284331482276580}
   m_Layer: 0
   m_Name: Borders
   m_TagString: Untagged
@@ -626,25 +539,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3967284331482276580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284329932024461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284330079324800
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +550,6 @@ GameObject:
   - component: {fileID: 3967284330079324801}
   - component: {fileID: 3967284330079324803}
   - component: {fileID: 3967284330079324802}
-  - component: {fileID: 3967284331405075597}
   m_Layer: 0
   m_Name: ProgressCircle
   m_TagString: Untagged
@@ -722,25 +615,6 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3967284331405075597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284330079324800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284330669920979
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +627,6 @@ GameObject:
   - component: {fileID: 3967284330669920991}
   - component: {fileID: 3967284330669920990}
   - component: {fileID: 3967284330669920989}
-  - component: {fileID: 3967284331210940427}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -851,25 +724,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3967284331210940427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284330669920979}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 1
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 0
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &3967284330951321175
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,7 +735,6 @@ GameObject:
   - component: {fileID: 3967284330951321168}
   - component: {fileID: 3967284330951321170}
   - component: {fileID: 3967284330951321169}
-  - component: {fileID: 3967284329661496756}
   m_Layer: 0
   m_Name: CircleBackground
   m_TagString: Untagged
@@ -947,25 +800,6 @@ MonoBehaviour:
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3967284329661496756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3967284330951321175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cfcc9ceea0bf419cb3bcaf548c2600d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveLayer: 0
-  saveTag: 0
-  saveName: 0
-  saveHideFlags: 0
-  saveActive: 1
-  saveChildren: 0
-  componentsToSave: []
 --- !u!1 &4687062002299461499
 GameObject:
   m_ObjectHideFlags: 0
@@ -20952,7 +20786,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8670617696397926555, guid: 4a610fa94e5bf4f4ea72025026ac57ca, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4a610fa94e5bf4f4ea72025026ac57ca, type: 3}
 --- !u!4 &3648519581951714135 stripped
 Transform:
