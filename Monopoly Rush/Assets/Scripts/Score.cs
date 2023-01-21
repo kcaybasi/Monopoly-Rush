@@ -20,6 +20,6 @@ public class Score :IComparable<Score>
         {
             return 1;
         }
-        return score - other.score;
+        return other.score-score;
     }
 }

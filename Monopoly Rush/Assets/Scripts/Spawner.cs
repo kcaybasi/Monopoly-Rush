@@ -64,33 +64,4 @@ public class Spawner : MonoBehaviour
         Vector3 spawnPos = brickSpawnTransform.position + offsetVector * 2; // Add the offset vector to the spawn position
         obj.transform.position = spawnPos; // Set the brick's position to the spawn position
     }
-
-    /*IEnumerator SpawnBrick()
-    {
-        _isBrickSpawningAllowed = false;
-        GameObject obj = _objectPooler.BrickPool.Get();
-        activeBrick++;
-
-        float randomX = Random.Range(-5.0f, 5.0f);
-        float randomZ = Random.Range(-5.0f, 5.0f);
-
-        Vector3 offsetVector = new Vector3(randomX, 0.25f, randomZ);
-        Vector3 spawnPos = brickSpawnTransform.position + offsetVector;
-        obj.transform.position = spawnPos+offsetVector;
-        StartCoroutine(WaitForPunchTween(obj));
-        yield return new WaitForSeconds(_brickSpawnTime);
-        _isBrickSpawningAllowed = true;
-    }
-
-
-    IEnumerator WaitForPunchTween(GameObject obj)
-    {
-        Tween tween= obj.transform.DOPunchScale(Vector3.one * 0.5f, 0.75f, 5, 0f);
-        yield return tween.WaitForCompletion();
-        obj.GetComponent<BoxCollider>().enabled = true; //To get bricks in right scale
-    }*/
-
-
-  
-
 }
