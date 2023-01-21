@@ -1,15 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using DG.Tweening;
 using UnityEditor.VersionControl;
+using Random = UnityEngine.Random;
 using Task = System.Threading.Tasks.Task;
 
 public class Spawner : MonoBehaviour
 {
     // Components
     private ObjectPooler _objectPooler;
+    private  CGameManager _cGameManager;
     
     [Header("Brick Spawn")]
     [SerializeField] Transform brickSpawnTransform;
@@ -22,6 +25,15 @@ public class Spawner : MonoBehaviour
     {
         _isBrickSpawningAllowed = true;
         _objectPooler = ObjectPooler.Instance;
+        _cGameManager=CGameManager.Instance;
+        
+        CGameManager.OnGameFinish += C_GameManager_OnGameFinish;
+        
+    }
+
+    private void C_GameManager_OnGameFinish()
+    {
+        this.enabled = false;
     }
 
     private void Update()
@@ -62,5 +74,9 @@ public class Spawner : MonoBehaviour
         Vector3 offsetVector = new Vector3(randomX, 0.25f, randomZ); // Create a vector with the randomized values
         Vector3 spawnPos = brickSpawnTransform.position + offsetVector * 2; // Add the offset vector to the spawn position
         obj.transform.position = spawnPos; // Set the brick's position to the spawn position
+    }
+    private void OnDestroy()
+    {
+        CGameManager.OnGameFinish -= C_GameManager_OnGameFinish;
     }
 }
