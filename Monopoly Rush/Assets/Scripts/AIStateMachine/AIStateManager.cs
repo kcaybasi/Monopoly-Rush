@@ -16,7 +16,6 @@ namespace AIStateMachine
         public int selectedListNo;
         private readonly float _reachDistance =3f;
         int _brickCapacity;
-        public string State;
         public GameObject reachedBuilding;
        
         private void Start()
@@ -46,7 +45,6 @@ namespace AIStateMachine
 
         private void Update()
         {
-            State=CurrentState.ToString();
             CurrentState.UpdateState();
         }
         

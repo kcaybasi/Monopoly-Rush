@@ -13,7 +13,6 @@ public class PieceMover : MonoBehaviour
     int _targetIndex=0;
     bool _isMovementAllowed=true;
     
-    
     void Start()
     {
         _cGameManager = CGameManager.Instance;
@@ -50,11 +49,16 @@ public class PieceMover : MonoBehaviour
         Building building = other.GetComponent<Building>();
 
         if (building == null) { return; }
-        int incomeAmount = building.IncomeAmount;
+        int incomeAmount = building.IncomeAmount; // Get income amount from building
         if (!building.pieceSmashParticle.isPlaying)
         {
             building.pieceSmashParticle.Play();
         }
+        UpdateScores(other, incomeAmount);
+    }
+
+    private void UpdateScores(Collider other, int incomeAmount)
+    {
         switch (other.transform.name)
         {
             case "Player_Building":

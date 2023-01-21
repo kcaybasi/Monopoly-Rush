@@ -37,7 +37,6 @@ public class Spawner : MonoBehaviour
             }
         }
     }
-
     async void SpawnBrickAsync()
     {
         _isBrickSpawningAllowed = false; // Prevents spawning more than one brick at a time
